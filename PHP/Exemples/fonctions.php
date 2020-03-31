@@ -1,5 +1,3 @@
-
-
 <?php
 //strlen: longueur d'une chaîne
 $phrase = 'Bonjour tout le monde ! Je suis une phrase !';
