@@ -101,12 +101,17 @@
     </footer>
 
     <script src="accueil.js"></script>
-    <?php if (isset($_SESSION['contact']) AND $_SESSION['contact'] == true) {
-        echo '<script>let contact = document.getElementById("contactez");
-    let alreadyContact = document.createTextNode("Déjà contacté !");
-    contact.style.background = "red";
-    contact.replaceChild(alreadyContact, contact.firstChild);</script>';
-    } ?>
+    <?php if (isset($_SESSION['contact']) and $_SESSION['contact'] == true) {
+    ?>
+        <script>
+            let contact = document.getElementById("contactez");
+            let alreadyContact = document.createTextNode("Déjà contacté !");
+            contact.style.background = "red";
+            contact.replaceChild(alreadyContact, contact.firstChild);
+        </script>
+    <?php
+    }
+    ?>
 </body>
 
 </html>

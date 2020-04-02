@@ -98,11 +98,14 @@
 
     <script src="accueil.js"></script>
     <?php if (isset($_GET['contact']) AND $_GET['contact'] == "oui") {
-        echo '<script>let contact = document.getElementById("contactez");
+        ?>
+        <script>let contact = document.getElementById("contactez");
     let alreadyContact = document.createTextNode("Déjà contacté !");
     contact.style.background = "red";
-    contact.replaceChild(alreadyContact, contact.firstChild);</script>';
-    } ?>
+    contact.replaceChild(alreadyContact, contact.firstChild);</script>
+    <?php
+    } 
+    ?>
 </body>
 
 </html>
