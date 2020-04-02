@@ -1,16 +1,30 @@
-<p>
-    <?php
+<!DOCTYPE html>
+<html lang="en">
 
-    if (strstr($_POST["mail"], "@")) {
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demande de contact</title>
+</head>
 
-        if (isset($_POST["name"]) and isset($_POST["mail"])) {
+<body>
 
-            echo "Mr/Mmme " . $_POST['name'] . ", votre demande a bien été pris en compte. Vous serez contacté à l'adresse : " . $_POST['mail'];
+    <p>
+        <?php
 
-            echo "<p>Retour à l'accueil :" . "<a href='index.php?contact=oui#contact'>Par ici</a></p>";
+        if (strstr($_POST["mail"], "@")) {
+
+            if (isset($_POST["name"]) and isset($_POST["mail"])) {
+
+                echo "Mr/Mmme " . $_POST['name'] . ", votre demande a bien été pris en compte. Vous serez contacté à l'adresse : " . $_POST['mail'];
+
+                echo "<p>Retour à l'accueil :" . "<a href='index.php?contact=oui#contact'>Par ici</a></p>";
+            }
+        } else {
+            echo "Veuillez saisir vos coordonnées dans le <a href='index.php?contact=non#contact'>formulaire</a> ";
         }
-    } else {
-        echo "Veuillez saisir vos coordonnées dans le <a href='index.php?contact=non#contact'>formulaire</a> ";
-    }
-    ?>
-</p>
+        ?>
+    </p>
+</body>
+
+</html>
