@@ -26,4 +26,56 @@ while ($donnees = $reponse->fetch()) {
 
 $reponse->closeCursor(); // Termine le traitement de la requête
 
+$reponse = $bdd->query('SELECT nom FROM jeux_video');
+
+while ($donnees = $reponse->fetch()) {
+    echo $donnees['nom'] . '<br />';
+}
+
+$reponse->closeCursor();
+
+//where
+
+$reponse = $bdd->query('SELECT nom, possesseur FROM jeux_video WHERE possesseur=\'Patrick\'');
+
+while ($donnees = $reponse->fetch()) {
+    echo $donnees['nom'] . ' appartient à ' . $donnees['possesseur'] . '<br />';
+}
+
+$reponse->closeCursor();
+
+//order by
+
+$reponse = $bdd->query('SELECT nom, prix FROM jeux_video ORDER BY prix');
+//par prix decroissant :
+// SELECT * FROM jeux_video ORDER BY prix DESC 
+
+while ($donnees = $reponse->fetch()) {
+    echo $donnees['nom'] . ' coûte ' . $donnees['prix'] . ' EUR<br />';
+}
+
+$reponse->closeCursor();
+
+//limit
+
+$reponse = $bdd->query('SELECT nom FROM jeux_video LIMIT 0, 10');
+
+echo '<p>Voici les 10 premières entrées de la table jeux_video :</p>';
+while ($donnees = $reponse->fetch()) {
+    echo $donnees['nom'] . '<br />';
+}
+
+$reponse->closeCursor();
+
+//
+$reponse = $bdd->query("SELECT nom, possesseur, console, prix FROM jeux_video WHERE console='Xbox' OR console='PS2' ORDER BY prix DESC LIMIT 0,10");
+
+echo '<p>Voici les 10 premières entrées de la table jeux_video par prix décroissant (+indication possesseur) :</p>';
+while ($donnees = $reponse->fetch()) {
+    echo $donnees['nom'] . ' coûte ' . $donnees['prix'] . ' EUR . '.' appartient à ' . $donnees['possesseur'] .'<br />';
+}
+
+$reponse->closeCursor();
+
+
 ?>
