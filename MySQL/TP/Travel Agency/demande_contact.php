@@ -5,11 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Demande de contact</title>
+    <link rel="stylesheet" href="style_admin.css">
+    <link rel="stylesheet" href="styles.css">
 
 </head>
 
 <body>
 
+<?php 
+include("to_include/entete.php");
+?>
     <p>
         <?php
 
@@ -27,7 +32,7 @@
                 
                 $verif_mail = $bdd->query('SELECT nom, mail, date_contact, contact FROM liste_contact ');
                 while ($data = $verif_mail->fetch()) {
-                    if ($_POST['mail'] == $data['mail']) {
+                    if ($_POST['mail'] == $data['mail']) { //verif si mail déjà dans la bdd : si non insert, si oui afficher dejà demandé + date + état (contacté oui ou non)
                         $already_contact = true;
         ?>
                         <p>Mr/Mme
@@ -41,12 +46,13 @@
                         if ($data['contact'] == "N") {
                         ?>
                             <p>Vous serez contacté dans les plus brefs délais.</p>
-                            <a href="index.php?contact=oui#contact">Retour</a>
+                            <button onclick="window.location.href = 'index.php?contact=oui#contact';" class="boutons">Retour</button>
                         <?php
                         } else {
                         ?>
                             <p>Vous avez déjà été contacté.</p>
-                            <a href="index.php?contact=oui#contact">Retour</a>
+                            <button onclick="window.location.href = 'index.php?contact=oui#contact';" class="boutons">Retour</button>
+                            
                     <?php
 
                         }
@@ -72,18 +78,21 @@
                         echo htmlspecialchars($_POST['mail']);
                         ?>
                     </p>
-                    <p>Retour à l'<a href='index.php?contact=oui#contact'>accueil</a></p>
+                    <button onclick="window.location.href = 'index.php?contact=oui#contact';" class="boutons">Retour</button>
+                    
             <?php
                 }
             }
         } else {
             ?>
-            <p>Veuillez saisir vos coordonnées dans le <a href='index.php?contact=non#contact'>formulaire</a></p>
+            <p>Erreur de saisie !</p>
+            <button onclick="window.location.href = 'index.php?contact=non#contact';" class="boutons">Acceuil</button>
         <?php
 
         }
         ?>
     </p>
+
 </body>
 
 </html>

@@ -6,28 +6,8 @@
 <head>
     <meta charset="utf-8" />
     <title>Personnes à contacter</title>
-    
-    <style>
-        table,
-        td {
-            border: 1px solid black;
-            border-collapse: collapse;
-            padding: 5px;
-        }
 
-        table {
-            margin: auto;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        .entete_tableau {
-            font-weight: bold;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="style_admin.css">
 </head>
 
 <body>
@@ -89,13 +69,38 @@
                 </tr>
             <?php
             }
+            $reponse_contact->closeCursor();
             ?>
 
         </table>
-        <p>Retour à l'<a href='index.php'>accueil</a></p>
+
+        <button onclick="window.location.href = 'index.php';" class="boutons">Acceuil</button>
+
+
+        <?php
+
+        $req_need_modif = $bdd->query('SELECT COUNT(*) AS nb_a_modif FROM liste_contact WHERE contact = "N"');
+        $data = $req_need_modif->fetch();
+        $req_need_modif->closeCursor();
+        //  echo $data['nb_a_modif'];
+        if ($data['nb_a_modif'] >= 1) {
+        ?>
+            <button onclick="window.location.href = 'envoi_contact.php';" class="boutons" >Envoi contact (<?php echo $data['nb_a_modif'] ?>)</button>
+
+        <?php
+
+        } else {
+        ?>
+
+            <button onclick="window.location.href = 'envoi_contact.php';" class="boutons" disabled="disabled">Envoi contact (<?php echo $data['nb_a_modif'] ?>)</button>
+        <?php
+
+        }
+        ?>
+
     <?php
-        $reponse_contact->closeCursor();
     } else {
+
     ?>
         <p>Identifiant et/ou mot de passe incorrect</p>
         <p>Retour à l'<a href='admin.php'>écran de connexion</a></p>

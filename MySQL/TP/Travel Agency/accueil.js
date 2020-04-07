@@ -22,8 +22,9 @@ function nonVide() {
     }
 }
 
-inputNom.addEventListener("keyup", nonVide);
-inputMail.addEventListener("keyup", nonVide);
+inputNom.addEventListener("input", nonVide);
+inputMail.addEventListener("input", nonVide);
+
 
 
 //ajout des astérisques rouges aux deux labels
