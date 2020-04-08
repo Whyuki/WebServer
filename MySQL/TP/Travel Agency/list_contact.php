@@ -37,7 +37,7 @@
         <h1>Suivi des personnes à contacter :</h1>
         <?php
 
-        $reponse_contact = $bdd->query('SELECT nom, mail, date_contact, contact FROM liste_contact');
+        $reponse_contact = $bdd->query('SELECT nom, mail, DATE_FORMAT(date_contact, "%d/%m/%Y") AS date_contact_fr, contact FROM liste_contact');
         ?>
         <table>
             <tr class="entete_tableau">
@@ -59,7 +59,7 @@
                         ?>
                     </td>
                     <td>
-                        <?php echo $donnees['date_contact'];
+                        <?php echo $donnees['date_contact_fr'];
                         ?>
                     </td>
                     <td>

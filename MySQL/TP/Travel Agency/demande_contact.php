@@ -30,7 +30,7 @@ include("to_include/entete.php");
 
                 $already_contact = false;
                 
-                $verif_mail = $bdd->query('SELECT nom, mail, date_contact, contact FROM liste_contact ');
+                $verif_mail = $bdd->query('SELECT nom, mail, DATE_FORMAT(date_contact, "%d/%m/%Y") AS date_contact_fr, contact FROM liste_contact ');
                 while ($data = $verif_mail->fetch()) {
                     if ($_POST['mail'] == $data['mail']) { //verif si mail déjà dans la bdd : si non insert, si oui afficher dejà demandé + date + état (contacté oui ou non)
                         $already_contact = true;
@@ -40,7 +40,7 @@ include("to_include/entete.php");
                             , vous avez déjà demandé à être contacté à l'adresse :
                             <?php echo $data['mail']; ?>
                             le
-                            <?php echo $data['date_contact']; ?>
+                            <?php echo $data['date_contact_fr']; ?>
                         </p>
                         <?php
                         if ($data['contact'] == "N") {
